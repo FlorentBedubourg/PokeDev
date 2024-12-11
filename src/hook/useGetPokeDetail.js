@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const usePokemonDetails = () => {
+const useGetPokeDetail = () => {
   const [selectedPokemon, setSelectedPokemon] = useState(null);
   const [loading, setLoading] = useState(false);
 
@@ -23,4 +23,4 @@ const usePokemonDetails = () => {
   };
 };
 
-export default usePokemonDetails;
+export default useGetPokeDetail;

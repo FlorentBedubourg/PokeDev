@@ -1,11 +1,14 @@
 import { useState, useEffect } from "react";
 import Header from "../component/Header";
 import Footer from "../component/Footer";
+import useGetPokeDetail from "../hook/useGetPokeDetail";
 
 const Home = () => {
   const [randomPokemons, setRandomPokemons] = useState([]);
   const [randomTypes, setRandomTypes] = useState([]);
   const [loading, setLoading] = useState(true);
+  const { selectedPokemon, setSelectedPokemon, fetchPokemonDetails } = useGetPokeDetail();
+
 
   // Fonction pour récupérer tous les Pokémon
   const fetchAllPokemons = () => {
@@ -16,9 +19,6 @@ const Home = () => {
         const randomPokemons = getRandomItems(data, 6);
         setRandomPokemons(randomPokemons);
       })
-      .catch((error) => {
-        console.error("Erreur lors de la récupération des Pokémon:", error);
-      });
   };
 
   // Fonction pour récupérer tous les types de Pokémon
@@ -31,10 +31,6 @@ const Home = () => {
         setRandomTypes(randomTypes);
         setLoading(false);
       })
-      .catch((error) => {
-        console.error("Erreur lors de la récupération des types:", error);
-        setLoading(false);
-      });
   };
 
   // Fonction pour sélectionner un nombre n d'éléments au hasard dans un tableau
@@ -57,7 +53,7 @@ const Home = () => {
         <div className="text-center w-full px-6">
           {/* Titre bien en haut */}
           <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6">
-            Bienvenue dans le monde de Pokémon
+            Bienvenue dans le monde des Pokémons
           </h2>
           
           {/* Affichage des Pokémon au hasard et des types */}
@@ -70,16 +66,14 @@ const Home = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6">
                   {randomPokemons.map((pokemon) => (
                     <div
-                      key={pokemon.id}
-                      className="bg-white border border-gray-200 rounded-lg shadow-md hover:shadow-lg transition duration-300 p-6 text-center"
+                      key={pokemon.id} className="bg-white border border-gray-200 rounded-lg shadow-md hover:shadow-lg transition duration-300 p-6 text-center"
                     >
                       <img src={pokemon.image} alt={pokemon.name} className="w-32 h-32 object-contain mx-auto mb-4"/>
                       <h3 className="text-xl font-bold text-gray-800">{pokemon.name}</h3>
                       <p className="text-sm text-gray-600">
                         {pokemon.apiTypes.map((type) => (
                           <span
-                            key={type.name}
-                            className="inline-block mr-2 text-sm text-gray-700"
+                            key={type.name} className="inline-block mr-2 text-sm text-gray-700"
                           >
                             <img src={type.image} alt={type.name} className="w-6 h-6 inline-block mr-1"/>
                             {type.name}
@@ -96,8 +90,7 @@ const Home = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                   {randomTypes.map((type) => (
                     <div
-                      key={type.id}
-                      className="bg-white border border-gray-200 rounded-lg shadow-md hover:shadow-lg transition duration-300 p-6 text-center"
+                      key={type.id} className="bg-white border border-gray-200 rounded-lg shadow-md hover:shadow-lg transition duration-300 p-6 text-center"
                     >
                       <img src={type.image} alt={type.name} className="w-32 h-32 object-contain mx-auto mb-4"/>
                       <h3 className="text-xl font-bold text-gray-800">{type.name}</h3>

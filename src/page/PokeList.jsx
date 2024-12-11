@@ -49,11 +49,7 @@ const PokeList = () => {
               Retour à la liste
             </button>
             <div className="flex justify-center">
-              <img
-                src={selectedPokemon.image}
-                alt={selectedPokemon.name}
-                className="w-64 h-64 object-contain"
-              />
+              <img src={selectedPokemon.image} alt={selectedPokemon.name} className="w-64 h-64 object-contain"/>
             </div>
             <h1 className="text-2xl font-bold text-center mt-4">{selectedPokemon.name}</h1>
             <p className="text-center text-gray-500 mb-4">
@@ -80,8 +76,7 @@ const PokeList = () => {
           <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {pokemon.map((poke) => (
               <li
-                key={poke.id}
-                className="border border-gray-200 rounded-lg p-4 shadow hover:shadow-lg transition cursor-pointer"
+                key={poke.id} className="border border-gray-200 rounded-lg p-4 shadow hover:shadow-lg transition cursor-pointer"
                 onClick={() => fetchPokemonDetails(poke.id)} // On utilise la fonction pour récupérer les détails
               >
                 <img src={poke.image} alt={poke.name} className="w-full h-48 object-contain mb-4" />
