@@ -17,7 +17,7 @@ const Header = () => {
       <div className="container mx-auto flex justify-between items-center px-5 py-4">
         {/* Logo */}
         <div className="flex items-center">
-          <img src="image/ball.png" alt="Pokemon Logo" className="h-10 w-10 object-contain mr-3"/>
+          <img src="/ball.png" alt="Pokemon Logo" className="h-10 w-10 object-contain mr-3"/>
           <h1 className="text-3xl font-extrabold text-gray-100 tracking-wide hover:text-yellow-300 transition-colors duration-300 cursor-pointer">
             <Link to={"/"}>PokeDev</Link>
           </h1>

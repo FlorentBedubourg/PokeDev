@@ -1,4 +1,4 @@
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useLocation } from "react-router-dom";
 import Header from "../component/Header";
 import Footer from "../component/Footer";
 import useGetType from "../hook/useGetType";
@@ -6,6 +6,8 @@ import useGetType from "../hook/useGetType";
 const TypeList = () => {
   const { type } = useParams();
   const { types, pokemonList, loading } = useGetType(type);
+  const location = useLocation();
+  const from = location.state?.from || 'home';
 
   if (loading) {
     return (
@@ -29,7 +31,7 @@ const TypeList = () => {
               Pokémon de type {type}
             </h1>
             {/* Bouton retour en haut à gauche */}
-            <Link to="/typelist" className="absolute top-4 left-4 text-sm font-medium hover:underline" >
+            <Link to={from === 'typelist' ? '/typelist' : '/'} className="absolute top-4 left-4 text-sm font-medium hover:underline" >
               ← Retour à la liste des types
             </Link>
             {pokemonList.length > 0 ? (
@@ -59,7 +61,7 @@ const TypeList = () => {
                 <li
                   key={typeItem.id}
                   className="bg-white border border-gray-200 rounded-lg shadow hover:shadow-xl transition hover:bg-blue-50 p-4 flex items-center justify-center space-x-4" >
-                  <Link to={`/types/${typeItem.name}`} className="flex items-center space-x-4">
+                  <Link to={`/types/${typeItem.name}`} state={{ from: 'typelist' }} className="flex items-center space-x-4">
                     <img src={typeItem.image} alt={typeItem.name} className="h-16 w-16 object-contain" />
                     <p className="text-lg font-medium text-gray-800">{typeItem.name}</p>
                   </Link>

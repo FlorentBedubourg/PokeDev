@@ -80,6 +80,7 @@ const SearchResult = () => {
             ) : (
               <p className="text-center text-lg text-gray-500">
                 Aucun Pokémon trouvé pour "{searchQuery}".
+                <img src="/psicocanard.png" alt="raté" className="h-20 w-20 object-contain ml-2 inline-block" />
               </p>
             )}
           </div>

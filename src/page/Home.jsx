@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Header from "../component/Header";
 import Footer from "../component/Footer";
 import useGetPokeDetail from "../hook/useGetPokeDetail";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const [randomPokemons, setRandomPokemons] = useState([]);
@@ -127,8 +128,10 @@ const Home = () => {
                       key={type.id}
                       className="bg-white border border-gray-200 rounded-lg shadow-md hover:shadow-lg transition duration-300 p-6 text-center"
                     >
-                      <img src={type.image} alt={type.name} className="w-32 h-32 object-contain mx-auto mb-4"/>
+                      <Link to={`/types/${type.name}`} state={{ from: 'home' }} className="flex flex-col items-center justify-between">
+                      <img src={type.image} alt={type.name} className="w-32 h-32 object-contain mb-4"/>
                       <h3 className="text-xl font-bold text-gray-800">{type.name}</h3>
+                      </Link>
                     </div>
                   ))}
                 </div>
