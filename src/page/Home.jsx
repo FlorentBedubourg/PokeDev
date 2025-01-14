@@ -115,7 +115,7 @@ const Home = () => {
           fetchAllPokemons();
           fetchAllTypes();
            }} className="mt-6 bg-teal-500 hover:bg-teal-600 text-white font-semibold py-2 px-4 rounded shadow-md transition duration-300" >
-          Obtenir une nouvelle équipe
+          Obtenir une nouvelle configuraton
         </button>
 
           {/* Affichage des 3 types au hasard */}
